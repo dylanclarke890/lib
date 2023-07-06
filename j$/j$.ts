@@ -1,13 +1,6 @@
 import { J$Number } from "./j$-number.js";
 import { J$String } from "./j$-string.js";
-
-class J$UI {
-  static toHTMLString(value: string) {
-    if (typeof value !== "string") return "";
-
-    return value.replace("\n", "<br>");
-  }
-}
+import { J$UI } from "./j$-ui.js";
 
 export class J$ {
   static isDefined<T>(value: T): boolean {
@@ -15,7 +8,6 @@ export class J$ {
   }
 
   static UI = J$UI;
-
   static String = J$String;
   static Number = J$Number;
 }

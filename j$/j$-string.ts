@@ -19,7 +19,7 @@ export class J$String {
 
   static format(value: string, ...args: string[]) {
     let i = args.length;
-    while (i--) value = value.replace(new RegExp(`\{${i}\}`), args[i]);
+    while (i--) value = value.replace(new RegExp(`\\{${i}\\}`, "gm"), args[i]);
     return value;
   }
 
