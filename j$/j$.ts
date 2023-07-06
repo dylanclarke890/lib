@@ -1,3 +1,6 @@
+import { J$Number } from "./j$-number.js";
+import { J$String } from "./j$-string.js";
+
 class J$UI {
   static toHTMLString(value: string) {
     if (typeof value !== "string") return "";
@@ -12,4 +15,7 @@ export class J$ {
   }
 
   static UI = J$UI;
+
+  static String = J$String;
+  static Number = J$Number;
 }
