@@ -19,3 +19,5 @@ export class J$ {
   static String = J$String;
   static Number = J$Number;
 }
+
+console.log(J$.String.format("{0}, {1} {2}", "Hello", "my name is", "Dylan"));
