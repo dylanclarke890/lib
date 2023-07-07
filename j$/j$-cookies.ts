@@ -1,5 +1,5 @@
 const ONE_DAY_IN_MS = 24 * 60 * 60 * 1000;
-export class Cookies {
+export class J$Cookies {
   static set(key: string, value: any, daysToExpire?: number) {
     const expirationDate = new Date();
     expirationDate.setTime(expirationDate.getTime() + (daysToExpire ?? 365) * ONE_DAY_IN_MS);
