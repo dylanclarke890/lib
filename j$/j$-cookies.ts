@@ -2,10 +2,12 @@ export class J$Cookies {
   static #ONE_DAY_IN_MS = 24 * 60 * 60 * 1000;
   static set(key: string, value: any, daysToExpire?: number) {
     const expirationDate = new Date();
+
     expirationDate.setTime(expirationDate.getTime() + (daysToExpire ?? 365) * this.#ONE_DAY_IN_MS);
-    document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(
-      value
-    )};expires=${expirationDate.toUTCString()}`;
+    key = encodeURIComponent(key);
+    value = encodeURIComponent(value);
+
+    document.cookie = `${key}=${value};expires=${expirationDate.toUTCString()}`;
   }
 
   static get(key: string) {
