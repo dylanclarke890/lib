@@ -7,7 +7,7 @@ export class J$Object {
 
   static #recurse(
     object: { [x: string]: any },
-    callback: (key: string, value: any) => void,
+    callback: (key: string, value: any, isLeaf: boolean) => void,
     visited = new WeakSet()
   ) {
     if (!this.isPlainObject(object) || typeof callback !== "function") return;
@@ -15,8 +15,9 @@ export class J$Object {
     visited.add(object); // Mark the object as visited
 
     Object.entries(object).forEach(([key, value]) => {
-      callback(key, value);
-      if (typeof value === "object" && value !== null && !visited.has(value)) {
+      const isLeaf = typeof value === "object";
+      callback(key, value, isLeaf);
+      if (isLeaf && value !== null && !visited.has(value)) {
         this.#recurse(value, callback, visited); // Recursive call with the visited set
       }
     });
@@ -53,5 +54,11 @@ export class J$Object {
     }
 
     return result;
+  }
+
+  static assign(target: any, ...objs: any[]) {
+    objs.forEach((obj) => {
+      this.recurse(obj, (key, value) => {});
+    });
   }
 }
